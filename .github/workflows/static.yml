@@ -33,6 +33,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Verify static site files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -f wordcraft-web-d288edabbaf506a2.js
+          test -f wordcraft-web-d288edabbaf506a2_bg.wasm
+          grep -Fq "wordcraft-web-d288edabbaf506a2_bg.wasm" index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
